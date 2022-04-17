@@ -13,7 +13,6 @@ import (
 func AddUserRoutes(r *mux.Router){
 	r.HandleFunc("/login", AccountLogin).Methods("POST")
 	r.HandleFunc("/change_password", ChangePassword).Methods("POST")
-	r.HandleFunc("/find_user", FindTheUser).Methods("POST")
 }
 
 func AccountLogin(w http.ResponseWriter, r *http.Request){
@@ -58,22 +57,5 @@ func ChangePassword(w http.ResponseWriter, r *http.Request){
 		fmt.Fprintln(w, "Change Password Unsuccessful: ", err.Error())
 	} else{
 		fmt.Fprintln(w, "Change Password Success")
-	}
-}
-
-func FindTheUser(w http.ResponseWriter, r *http.Request){
-	var loginRequest models.UserLogin
-	decoder := json.NewDecoder(r.Body)
-	decoder.DisallowUnknownFields()
-	err := decoder.Decode(&loginRequest)
-	if err != nil {
-		fmt.Fprintln(w, "ChangePassword Unsuccessful: ", err.Error())
-		return
-	}
-	doc, err := services.FindUser(&loginRequest.UserId, &loginRequest.Password)
-	if err != nil || doc == nil {
-		fmt.Fprintln(w, "User Not Found")	
-	} else {
-		fmt.Fprintln(w, "User Found")
 	}
 }

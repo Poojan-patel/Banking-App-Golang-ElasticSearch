@@ -52,7 +52,7 @@ func saveUser(usr *beans.User, id string) (error) {
 	
 }
 
-func FindUser(userId *string, password *string) (map[string]interface{}, error){
+func findUser(userId *string, password *string) (map[string]interface{}, error){
 	var es *elasticsearch.Client = config.GetESClient()
 	query_string := fmt.Sprintf(`{"query":{"bool":{"must":{"match_phrase":{"user_id":%s}}}}}`, *userId)
 	res, err := repository.SearchQuery(&query_string, "users", es)
@@ -72,7 +72,7 @@ func FindUser(userId *string, password *string) (map[string]interface{}, error){
 }
 
 func ChangePassword(req *models.UserChangePassword) error {
-	doc, err := FindUser(&req.UserId, &req.OldPassword)
+	doc, err := findUser(&req.UserId, &req.OldPassword)
 	if err != nil {
 		return err
 	}
@@ -86,7 +86,7 @@ func ChangePassword(req *models.UserChangePassword) error {
 }
 
 func GenerateAuthToken(usrLogin *models.UserLogin) (*string, error){
-	doc, err := FindUser(&usrLogin.UserId, &usrLogin.Password)
+	doc, err := findUser(&usrLogin.UserId, &usrLogin.Password)
 	if err != nil {
 		log.Println("gat1:", err)
 		return nil, err
