@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "f42336ee-8211-4554-99fa-6b4c4ee822d0",
+		"name": "Golang",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "auth_tok_banking_system",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY1MDEzMTMyOCIsImV4cCI6MTY1MDE4MzgwOH0.8wlC2Vbcou607FoRrfgKJBQbS7jTQNvT-bI3D7vC1cw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"1650131328\",\n    \"password\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{user_route}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"1650131328\",\n    \"old_password\":\"admin2\",\n    \"new_password\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{user_route}}/change_password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Account Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"superuser\",\n    \"mobile\": \"7453234319\",\n    \"aadhar\": \"121212212121\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{account_route}}/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_tok_banking_system",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY1MDE4MTg5OCIsImV4cCI6MTY1MDE4MzQ5M30.YMx596C3pFcSvwYfzO0CBZoHlrTZvKdQB_0fl6_lYOg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_no\":\"4051650131328\",\n    \"user_id\":\"1650181898\",\n    \"amount\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{account_route}}/deposit"
+					},
+					"response": []
+				},
+				{
+					"name": "NEFT",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_tok_banking_system",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY1MDE4MTg5OCIsImV4cCI6MTY1MDE4MzQ5M30.YMx596C3pFcSvwYfzO0CBZoHlrTZvKdQB_0fl6_lYOg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"from_account_no\": \"2561650181898\",\n    \"to_account_no\":\"4051650131328\",\n    \"user_id\":\"1650181898\",\n    \"amount\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{account_route}}/neft"
+					},
+					"response": []
+				},
+				{
+					"name": "WithDraw",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_tok_banking_system",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY1MDAzOTcwNCIsImV4cCI6MTY1MDE3OTk3M30.coS5d-v8lVcjZHm3tDOZ7Whe9SHOX6084eRZlDmvHEM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_no\":\"8671650039704\",\n    \"user_id\":\"1650039704\",\n    \"amount\": 2700\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{account_route}}/withdraw"
+					},
+					"response": []
+				},
+				{
+					"name": "Account Statement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_tok_banking_system",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY1MDEzMTMyOCIsImV4cCI6MTY1MDE4MzgwOH0.8wlC2Vbcou607FoRrfgKJBQbS7jTQNvT-bI3D7vC1cw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_no\":\"4051650131328\",\n    \"user_id\":\"1650131328\",\n    \"last_transactions\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{account_route}}/statement"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Find User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\":\"1650039704\",\n    \"password\":\"poojan\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local}}/users/find_user"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "user_route",
+			"value": "http://localhost:8081/user",
+			"type": "string"
+		},
+		{
+			"key": "account_route",
+			"value": "http://localhost:8081/account",
+			"type": "string"
+		}
+	]
+}
